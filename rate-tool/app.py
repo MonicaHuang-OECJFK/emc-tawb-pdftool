@@ -1,6 +1,7 @@
 import streamlit as st
 import tempfile
 import os
+from datetime import date
 from emc_extract import extract
 from excel_writer import update_rates
 
@@ -8,7 +9,7 @@ st.title("EMC TAWB Rate Updater")
 
 st.markdown("#### 🔧 What this tool does")
 st.markdown("""
-- 📄 Extracts **POL / POD / 2SD / 4SD / 4SH** rates from EMC (Evergreen) PDF
+- 📄 Extracts ocean freight rate **POL / POD / 2SD / 4SD / 4SH** from EMC PDF
 - ✍️ Updates the **20' / 40' / 40'HC** columns in the cheatsheet
 """)
 
@@ -55,7 +56,7 @@ if st.button("Run"):
                     st.download_button(
                         "📥 Download Updated Cheatsheet",
                         f,
-                        file_name="updated_cheatsheet.xlsx",
+                        file_name=f"EMC TAWB Cheat sheet {date.today().strftime('%m%d%Y')}.xlsx",
                         mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
                     )
 
